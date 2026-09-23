@@ -24,7 +24,7 @@ Tài liệu mô tả **cách tiếp cận kiểm thử** (test strategy) cho mod
 | Tổ chức | Test Policy – *vì sao* kiểm thử | Không áp dụng (dự án thực hành) |
 | Tổ chức / Chương trình | **Test Strategy – kiểm thử *như thế nào*** | **Tài liệu này** |
 | Dự án | Test Plan / Test Approach – ai, làm gì, khi nào | Kế thừa từ tài liệu này |
-| Thiết kế | Test Case | [Testcase/TC_Login](Testcase/TC_Login) |
+| Thiết kế | Test Case | [Testcase/TC_Login.md](Testcase/TC_Login.md) |
 
 ### 1.3 Định nghĩa, từ viết tắt
 
@@ -258,18 +258,18 @@ ID, Tiêu đề, Môi trường (trình duyệt, phiên bản, thời điểm), 
 
 ## 12. Ma trận truy vết (Traceability) Yêu cầu → Test Case
 
-Mã TC tham chiếu bộ test case chi tiết `TC_LOGIN_xxx` trong [Testcase/TC_Login](Testcase/TC_Login).
+Mã TC tham chiếu bộ test case chi tiết `TC_LOGIN_xxx` / `TC_FP_xxx` trong [Testcase/TC_Login.md](Testcase/TC_Login.md).
 
 | Yêu cầu | Nội dung | Test Case |
 |---|---|---|
 | FR-01 / UC-01 | Đăng nhập thành công | TC_LOGIN_002, 005, 007 |
 | BR-01 / UC-03 | Email, Password bắt buộc | TC_LOGIN_008, 009, 010, 021 |
 | BR-02 / UC-02 | Thông báo lỗi chung | TC_LOGIN_011, 012, 013, 016 |
-| BR-03 / NFR-06 | Đã đăng nhập → redirect Dashboard | TC_LOGIN_006 |
+| BR-03, BR-08 / NFR-06 | Đã đăng nhập → redirect Dashboard | TC_LOGIN_006, TC_FP_006 |
 | FR-02 / BR-04, BR-05 | Remember me | TC_LOGIN_001, 003, 004 |
-| FR-03 / BR-06 → BR-08 | Forgot Password | *Cần bổ sung TC* (tham khảo SRS TC-11 → TC-14) |
+| FR-03 / BR-06 → BR-08 | Forgot Password | TC_FP_001 → TC_FP_010 |
 | FR-04 / BR-09 | Logout, không dùng lại session cũ | TC_LOGIN_017 |
-| NFR-01 | Ẩn password, bảo mật input | TC_LOGIN_023, 024, 025 |
+| NFR-01 | Ẩn password, bảo mật input | TC_LOGIN_023, 024, 025, TC_FP_009 |
 | NFR-02 | Chống brute-force | TC_LOGIN_026 |
 | NFR-03 | Usability thông báo lỗi | TC_LOGIN_008 → 013 (kiểm tra kèm) |
 | NFR-04 | Tương thích trình duyệt | Chạy lại bộ TC High trên Edge, Firefox |
@@ -281,7 +281,7 @@ Mã TC tham chiếu bộ test case chi tiết `TC_LOGIN_xxx` trong [Testcase/TC_
 
 ## 13. Regression và Confirmation Testing
 - **Confirmation testing**: mỗi lỗi được báo đã sửa phải được retest bằng đúng TC và test data ban đầu, trên cùng trình duyệt.
-- **Bộ regression**: gồm toàn bộ TC Priority High (TC_LOGIN_001, 002, 007, 008, 009, 010, 011, 012, 017, 023, 024).
+- **Bộ regression**: gồm toàn bộ TC Priority High (TC_LOGIN_001, 002, 007, 008, 009, 010, 011, 012, 017, 023, 024 và TC_FP_001, 002, 004, 005, 009).
 - **Khi chạy regression**: sau mỗi đợt sửa lỗi; khi phát hiện môi trường demo được cập nhật/reset; trước khi lập Test Summary Report.
 - **Ứng viên tự động hóa**: bộ regression ở trên phù hợp để tự động hóa (Selenium/Playwright) ở giai đoạn sau, do các bước ổn định và lặp lại nhiều lần.
 
@@ -316,12 +316,12 @@ Mã TC tham chiếu bộ test case chi tiết `TC_LOGIN_xxx` trong [Testcase/TC_
 
 | # | Câu hỏi | Ảnh hưởng tới TC |
 |---|---|---|
-| Q-01 | Email có được tự động cắt khoảng trắng đầu/cuối không? | TC_LOGIN_018 |
-| Q-02 | Email đăng nhập có phân biệt hoa/thường không? | TC_LOGIN_019 |
+| Q-01 | Email có được tự động cắt khoảng trắng đầu/cuối không? | TC_LOGIN_018, TC_FP_008 |
+| Q-02 | Email đăng nhập có phân biệt hoa/thường không? | TC_LOGIN_019, TC_FP_008 |
 | Q-03 | Có chính sách khóa tài khoản/CAPTCHA sau N lần đăng nhập sai không? Nếu có, N bằng bao nhiêu và khóa trong bao lâu? | TC_LOGIN_026 |
 | Q-04 | Thời gian sống của session khi có/không có "Remember me" là bao lâu? | TC_LOGIN_003, 004 |
 | Q-05 | Độ dài tối đa của Email và Password? | TC_LOGIN_022 |
-| Q-06 | Có đổi thông báo "Email not found" thành thông báo trung lập để tránh user enumeration không? | TC Forgot Password (cần bổ sung) |
+| Q-06 | Có đổi thông báo "Email not found" thành thông báo trung lập để tránh user enumeration không? | TC_FP_010 |
 
 ---
 
