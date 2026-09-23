@@ -7,6 +7,7 @@ Repo lưu trữ tài liệu thực hành cho khóa học **AI Manual Test** — 
 | File | Mô tả |
 |---|---|
 | [SRS-Login-Module.md](SRS-Login-Module.md) | Đặc tả yêu cầu phần mềm (SRS) cho module Login, khảo sát trên hệ thống demo [Perfex CRM – Anh Tester](https://crm.anhtester.com/admin/authentication) |
+| [Test-Strategy-Login-Module.md](Test-Strategy-Login-Module.md) | Test Strategy cho module Login theo chuẩn ISTQB / ISO 29119-3 |
 
 ## Mục đích
 
